@@ -176,9 +176,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dishes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hN-Bx-fPn">
-                                <rect key="frame" x="175" y="67" width="52" height="21"/>
+                                <rect key="frame" x="16" y="67" width="87" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -234,12 +234,32 @@
                                     <outlet property="delegate" destination="KuW-lw-a6h" id="pi5-Lz-wOi"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSS-eB-uAD">
+                                <rect key="frame" x="213" y="65" width="77" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonClicked:" destination="KuW-lw-a6h" eventType="touchUpInside" id="1TO-tc-ua8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cj-Af-J3G">
+                                <rect key="frame" x="298" y="65" width="74" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Delete"/>
+                                <connections>
+                                    <action selector="deleteButtonClicked:" destination="KuW-lw-a6h" eventType="touchUpInside" id="MUQ-a1-KQg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pYP-Wb-PaR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Dish" image="fork.knife.circle.fill" catalog="system" id="HbG-u3-i1d"/>
                     <connections>
+                        <outlet property="cancelButton" destination="bSS-eB-uAD" id="WKQ-YD-pSb"/>
+                        <outlet property="deleteButton" destination="5cj-Af-J3G" id="cAL-MZ-znQ"/>
                         <outlet property="tableView" destination="Wac-oT-kJY" id="jdy-5l-dEN"/>
                     </connections>
                 </viewController>

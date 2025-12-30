@@ -51,13 +51,20 @@ class DatabaseManager: NSObject {
         
     }
     
-    func removeDish(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
-            return
-        }
+    func deleteDish(dish: Dish) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         
+        context.delete(dish)
+        
+        do {
+            try context.save()
+            print("Dish deleted successfully")
+        } catch {
+            print("Failed to delete dish: \(error)")
+        }
     }
+
     func fetchDishes() -> [Dish] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return []

@@ -21,5 +21,11 @@
 			</array>
 		</dict>
 	</dict>
+    <key>NSCameraUsageDescription</key>
+    <string>Camera access is needed to take dish photos</string>
+
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Photo library access is needed to select dish images</string>
+
 </dict>
 </plist>

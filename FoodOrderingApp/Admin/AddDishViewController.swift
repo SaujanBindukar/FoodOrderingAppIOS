@@ -96,7 +96,7 @@ class AddDishViewController: UIViewController, UIImagePickerControllerDelegate,
         dishNameController.text = ""
              dishIngredientsController.text = ""
              dishPriceController.text = ""
-             dishImageContoller.image = UIImage(named: "photo.artframe")
+        dishImageContoller.image = UIImage(named: "photo.artframe")
              dishTypeController.selectedSegmentIndex = 0
              dishType = "Entry"
         

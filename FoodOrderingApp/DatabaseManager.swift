@@ -58,14 +58,21 @@ class DatabaseManager: NSObject {
         let context = appDelegate.persistentContainer.viewContext
         
     }
-    
-    func getAllDish()-> [Dish]{
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else{
+    func fetchDishes() -> [Dish] {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return []
         }
+
         let context = appDelegate.persistentContainer.viewContext
-        
-        return []
+        let request: NSFetchRequest<Dish> = Dish.fetchRequest()
+
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("❌ Fetch failed:", error.localizedDescription)
+            return []
+        }
     }
+
 
 }

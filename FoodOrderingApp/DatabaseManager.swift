@@ -212,6 +212,29 @@ class DatabaseManager: NSObject {
             print("❌ Failed to update order status:", error.localizedDescription)
         }
     }
+    
+    // MARK: - Delete an order
+    func deleteOrder(orderID: UUID) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+
+        let request: NSFetchRequest<Order> = Order.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", orderID as CVarArg)
+
+        do {
+            let results = try context.fetch(request)
+            if let orderToDelete = results.first {
+                context.delete(orderToDelete)
+                try context.save()
+                print("✅ Order deleted successfully")
+            } else {
+                print("⚠️ Order with id \(orderID) not found")
+            }
+        } catch {
+            print("❌ Failed to delete order:", error.localizedDescription)
+        }
+    }
+
 
 
     

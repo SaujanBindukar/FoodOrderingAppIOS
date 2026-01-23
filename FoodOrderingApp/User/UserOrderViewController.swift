@@ -18,14 +18,18 @@ class UserOrderViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.rowHeight = 210
-        fetchOrder()
-       
+        refreshOrders()
+    }
+
+    func refreshOrders() {
+        orders = db.fetchOrders()
+        tableView.reloadData()
     }
     
     
       override func viewDidLoad() {
           super.viewDidLoad()
+          tableView.rowHeight = 210
 
           // Fetch orders when the view loads
           fetchOrder()
@@ -43,11 +47,7 @@ class UserOrderViewController: UIViewController, UITableViewDelegate, UITableVie
                   print(" \(item.dish.name ?? "") x\(item.quantity)")
               }
           }
-
-         
-
-//           TODO: reload your tableView or collectionView here if you want to show the orders in the UI
-//           tableView.reloadData()
+        tableView.reloadData()
       }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,6 +69,16 @@ class UserOrderViewController: UIViewController, UITableViewDelegate, UITableVie
         for item in items {
             allDish += "\(item.dish.name ?? "") x\(item.quantity)  "
         }
+        // MARK AS DONE
+           cell.onDoneTapped = { [weak self] in
+               self?.markOrderAsDone(order)
+               self?.tableView.reloadData()
+           }
+
+           // DELETE
+           cell.onDeleteTapped = { [weak self] in
+               self?.deleteOrder(order)
+           }
 
         cell.dishList.text = allDish
         return cell
@@ -80,5 +90,35 @@ class UserOrderViewController: UIViewController, UITableViewDelegate, UITableVie
         if minutes == 1 { return "1m ago" }
         return "\(minutes)m ago"
     }
+    
+    func markOrderAsDone(_ order: Order) {
+        order.status = "Done"
+        print("The order id is \(order.id)")
+        db.updateOrderStatus(orderID: order.id!, status: "Done")
+        refreshOrders()
+    }
+
+    func deleteOrder(_ order: Order) {
+        guard let orderID = order.id else {
+            print("⚠️ Order has no ID")
+            return
+        }
+        
+        let alert = UIAlertController(title: "Delete Order",
+                                      message: "Are you sure you want to delete this order?",
+                                      preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.db.deleteOrder(orderID: orderID)
+            self.refreshOrders()
+        }))
+        
+        present(alert, animated: true)
+    }
+
+
 
 }

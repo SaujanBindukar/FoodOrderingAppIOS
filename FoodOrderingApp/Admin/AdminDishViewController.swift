@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import Foundation
+
+extension Notification.Name {
+    static let dishAdded = Notification.Name("dishAdded")
+}
 
 class AdminDishViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -39,6 +44,16 @@ class AdminDishViewController: UIViewController, UITableViewDelegate, UITableVie
         // Add long press gesture for multi-selection
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         tableView.addGestureRecognizer(longPressGesture)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshDishes), name: .dishAdded, object: nil)
+    }
+    
+    @objc func refreshDishes() {
+        fetchData()  // reloads the table view with latest data
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self) // Clean up
     }
     
     
@@ -63,12 +78,10 @@ class AdminDishViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Fetch Data
     func fetchData() {
         let allDishes = db.fetchDishes()
-        
         // Group dishes by type
         entryDishes = allDishes.filter { $0.type == "Entry" }
         mainDishes  = allDishes.filter { $0.type == "Main" }
         drinkDishes = allDishes.filter { $0.type == "Drinks" }
-        
         tableView.reloadData()
     }
     
@@ -173,11 +186,11 @@ class AdminDishViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Navigation to Edit Page
     func navigateToEditDish(_ dish: Dish) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        if let editVC = storyboard.instantiateViewController(withIdentifier: "EditDishViewController") as? EditDishViewController {
-//            editVC.dish = dish
-//            editVC.delegate = self
-//            navigationController?.pushViewController(editVC, animated: true)
-//        }
+        if let editVC = storyboard.instantiateViewController(withIdentifier: "EditDishViewController") as? EditDishViewController {
+            editVC.dish = dish
+            editVC.delegate = self
+            navigationController?.pushViewController(editVC, animated: true)
+        }
     }
     
     // MARK: - Helper
@@ -193,7 +206,7 @@ class AdminDishViewController: UIViewController, UITableViewDelegate, UITableVie
 }
 
 // MARK: - Protocol to refresh after edit
-protocol DishUpdateDelegate {
+protocol DishUpdateDelegate: AnyObject {
     func didUpdateDish()
 }
 

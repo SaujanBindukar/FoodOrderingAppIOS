@@ -10,6 +10,8 @@ import UIKit
 class AddDishViewController: UIViewController, UIImagePickerControllerDelegate,
                              UINavigationControllerDelegate {
     
+    weak var delegate: DishUpdateDelegate?
+    
     var dishType = "Entry"
     @IBOutlet weak var dishNameController: UITextField!
     @IBOutlet weak var dishTypeController: UISegmentedControl!
@@ -58,8 +60,11 @@ class AddDishViewController: UIViewController, UIImagePickerControllerDelegate,
                   ingredients: ingredients,
                   image: image
               )
+            NotificationCenter.default.post(name: .dishAdded, object: nil)
 
               showAlert("Success", "Dish added successfully")
+              delegate?.didUpdateDish()
+              dismiss(animated: true)
               clearAll()
         
         
@@ -94,11 +99,24 @@ class AddDishViewController: UIViewController, UIImagePickerControllerDelegate,
     
     func clearAll(){
         dishNameController.text = ""
-             dishIngredientsController.text = ""
-             dishPriceController.text = ""
-        dishImageContoller.image = UIImage(named: "photo.artframe")
-             dishTypeController.selectedSegmentIndex = 0
-             dishType = "Entry"
+        dishIngredientsController.text = ""
+        dishPriceController.text = ""
+        // Reset image reliably
+           dishImageContoller.image = nil
+           
+           // Force the view to redraw
+           dishImageContoller.setNeedsLayout()
+           dishImageContoller.layoutIfNeeded()
+           
+           // Set the placeholder after clearing
+           if let placeholder = UIImage(named: "photo.artframe") {
+               dishImageContoller.image = placeholder
+           } else {
+               // fallback system image if your asset is missing
+               dishImageContoller.image = UIImage(systemName: "photo")
+           }
+        dishTypeController.selectedSegmentIndex = 0
+        dishType = "Entry"
         
     }
     

@@ -50,6 +50,19 @@ class ViewController: UIViewController {
     
     func navigateToUserHome(){
         
+        // Get storyboard
+           let storyboard = UIStoryboard(name: "Main", bundle: nil)
+           
+           // Instantiate AdminTabBarController
+           if let userTabBar = storyboard.instantiateViewController(withIdentifier: "UserTabController") as? UITabBarController {
+               // Make it the root view controller
+               if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let sceneDelegate = windowScene.delegate as? SceneDelegate {
+                   sceneDelegate.window?.rootViewController = userTabBar
+               }
+           }
+        
+        
     }
     
 }

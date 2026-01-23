@@ -30,8 +30,8 @@
             filePath = "FoodOrderingApp/User/UserOrderViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "fetchOrder()"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "FoodOrderingApp/User/UserOrderViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "fetchOrder()"
             landmarkType = "7">
          </BreakpointContent>
@@ -56,22 +56,6 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "5EAA50B7-FE8B-443F-8688-5E7FFA248094"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FoodOrderingApp/User/UserOrderViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "fetchOrder()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4DB55496-B26D-4DF8-8B86-A950AB5B8DEA"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -226,36 +210,6 @@
             endingLineNumber = "166"
             landmarkName = "orderItems(from:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "09B286CF-5056-4E13-B5C6-9AAA040D59C6 - dd6caafcce2787ba"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FoodOrderingApp.DatabaseManager.orderItems(from: FoodOrderingApp.Order) -&gt; Swift.Array&lt;FoodOrderingApp.OrderItem&gt;"
-                  moduleName = "FoodOrderingApp.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saujanbindukar/IOS/FoodOrderingApp/FoodOrderingApp/DatabaseManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "166"
-                  endingLineNumber = "166">
-               </Location>
-               <Location
-                  uuid = "09B286CF-5056-4E13-B5C6-9AAA040D59C6 - dd6caafcce2787ba"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FoodOrderingApp.DatabaseManager.orderItems(from: FoodOrderingApp.Order) -&gt; Swift.Array&lt;FoodOrderingApp.OrderItem&gt;"
-                  moduleName = "FoodOrderingApp.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saujanbindukar/IOS/FoodOrderingApp/FoodOrderingApp/DatabaseManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "166"
-                  endingLineNumber = "166">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -288,36 +242,6 @@
             endingLineNumber = "163"
             landmarkName = "submitOrderButton(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A7B7F461-6C1C-46CE-9A40-A8FC06C3B084 - fb171cb2f758cd44"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FoodOrderingApp.UserCreateOrderViewController.submitOrderButton(Any) -&gt; ()"
-                  moduleName = "FoodOrderingApp.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saujanbindukar/IOS/FoodOrderingApp/FoodOrderingApp/User/UserCreateOrderViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "163"
-                  endingLineNumber = "163">
-               </Location>
-               <Location
-                  uuid = "A7B7F461-6C1C-46CE-9A40-A8FC06C3B084 - 142984636a18d6da"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 ((key: FoodOrderingApp.Dish, value: Swift.Int)) -&gt; FoodOrderingApp.OrderItem in FoodOrderingApp.UserCreateOrderViewController.submitOrderButton(Any) -&gt; ()"
-                  moduleName = "FoodOrderingApp.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saujanbindukar/IOS/FoodOrderingApp/FoodOrderingApp/User/UserCreateOrderViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "163"
-                  endingLineNumber = "163">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

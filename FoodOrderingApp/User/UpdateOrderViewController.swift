@@ -161,6 +161,7 @@ class UpdateOrderViewController: UIViewController, UITableViewDelegate, UITableV
 
 
     @IBAction func updateOrderButton(_ sender: Any) {
+
         guard let order = order else { return }
           guard !selectedDishes.isEmpty else {
               print("⚠️ No dishes selected")
@@ -187,5 +188,21 @@ class UpdateOrderViewController: UIViewController, UITableViewDelegate, UITableV
           navigationController?.popViewController(animated: true)
     }
     @IBAction func diningOptionChanged(_ sender: Any) {}
+    
+    @IBAction func deleteOrderButtonPressed(_ sender: Any) {
+        guard let order = order else { return }
+        let alert = UIAlertController(
+            title: "Delete Order",
+            message: "Are you sure you want to delete this order?",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.db.deleteOrder(orderID: order.id!)
+            self.navigationController?.popViewController(animated: true)
+        }))
+        present(alert, animated: true)
+    }
 }
 

@@ -72,7 +72,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "C005E6BA-32F4-43DF-A3BF-3CFAD01B43EA"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FoodOrderingApp/DatabaseManager.swift"
@@ -88,7 +88,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "3D022D2F-7200-4C43-96CA-7A5A92AA9CF0"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FoodOrderingApp/DatabaseManager.swift"
@@ -354,43 +354,13 @@
             endingLineNumber = "169"
             landmarkName = "markOrderAsDone(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B3879B6B-D0A0-4205-B023-A758C513C3A2 - 16e9f3e40fcb4037"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FoodOrderingApp.UserOrderViewController.minutesAgo(from: Foundation.Date) -&gt; Swift.String"
-                  moduleName = "FoodOrderingApp.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saujanbindukar/IOS/FoodOrderingApp/FoodOrderingApp/User/UserOrderViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "169"
-                  endingLineNumber = "169">
-               </Location>
-               <Location
-                  uuid = "B3879B6B-D0A0-4205-B023-A758C513C3A2 - 6035079a9041c492"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FoodOrderingApp.UserOrderViewController.markOrderAsDone(FoodOrderingApp.Order) -&gt; ()"
-                  moduleName = "FoodOrderingApp.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saujanbindukar/IOS/FoodOrderingApp/FoodOrderingApp/User/UserOrderViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "169"
-                  endingLineNumber = "169">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "B9836D79-77E0-42A9-A575-CE442545FA5E"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FoodOrderingApp/User/UserOrderViewController.swift"
@@ -400,50 +370,6 @@
             endingLineNumber = "152"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B9836D79-77E0-42A9-A575-CE442545FA5E - d6e5550c5bdc519f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FoodOrderingApp.UserOrderViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
-                  moduleName = "FoodOrderingApp.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saujanbindukar/IOS/FoodOrderingApp/FoodOrderingApp/User/UserOrderViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "152"
-                  endingLineNumber = "152">
-               </Location>
-               <Location
-                  uuid = "B9836D79-77E0-42A9-A575-CE442545FA5E - 838d47fc32bffde"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in FoodOrderingApp.UserOrderViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
-                  moduleName = "FoodOrderingApp.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saujanbindukar/IOS/FoodOrderingApp/FoodOrderingApp/User/UserOrderViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "152"
-                  endingLineNumber = "152">
-               </Location>
-               <Location
-                  uuid = "B9836D79-77E0-42A9-A575-CE442545FA5E - 797de3c69dec41dd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in FoodOrderingApp.UserOrderViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
-                  moduleName = "FoodOrderingApp.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saujanbindukar/IOS/FoodOrderingApp/FoodOrderingApp/User/UserOrderViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "152"
-                  endingLineNumber = "152">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -460,36 +386,6 @@
             endingLineNumber = "168"
             landmarkName = "markOrderAsDone(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "21C61417-F913-46D8-A1FC-B93A6A957E3E - 16e9f3e40fcb4056"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FoodOrderingApp.UserOrderViewController.minutesAgo(from: Foundation.Date) -&gt; Swift.String"
-                  moduleName = "FoodOrderingApp.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saujanbindukar/IOS/FoodOrderingApp/FoodOrderingApp/User/UserOrderViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "168"
-                  endingLineNumber = "168">
-               </Location>
-               <Location
-                  uuid = "21C61417-F913-46D8-A1FC-B93A6A957E3E - 6035079a9041c4f3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FoodOrderingApp.UserOrderViewController.markOrderAsDone(FoodOrderingApp.Order) -&gt; ()"
-                  moduleName = "FoodOrderingApp.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/saujanbindukar/IOS/FoodOrderingApp/FoodOrderingApp/User/UserOrderViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "168"
-                  endingLineNumber = "168">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

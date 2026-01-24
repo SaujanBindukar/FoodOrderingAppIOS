@@ -74,7 +74,7 @@ class UserDishViewController: UIViewController, UITableViewDelegate, UITableView
         
         let dish = dishFor(indexPath: indexPath)
         
-        cell.nameLabel.text = dish.id?.uuidString
+        cell.nameLabel.text = dish.name
         cell.typeLabel.text = dish.type
         cell.priceLabel.text = "$\(dish.price)"
         cell.ingredientLabel.text = dish.ingredients

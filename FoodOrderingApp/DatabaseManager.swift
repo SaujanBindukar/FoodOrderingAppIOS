@@ -43,7 +43,7 @@ class DatabaseManager: NSObject {
 
         // Fetch the dish with the given id
         let request: NSFetchRequest<Dish> = Dish.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %d", id as CVarArg)
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
 
         do {
             let results = try context.fetch(request)

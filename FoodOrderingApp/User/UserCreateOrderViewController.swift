@@ -26,6 +26,7 @@ class UserCreateOrderViewController: UIViewController,  UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 135
+        tableView.allowsMultipleSelectionDuringEditing = true
         fetchData()
     }
     

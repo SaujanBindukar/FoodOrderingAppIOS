@@ -9,6 +9,10 @@ import UIKit
 
 class UserCreateOrderViewController: UIViewController,  UITableViewDelegate, UITableViewDataSource {
    
+    enum Mode { case create, edit }
+    var mode: Mode = .create
+    var order: Order?
+    var onSaved: (() -> Void)?
     
 
     @IBOutlet weak var tableNumber: UITextField!
@@ -28,6 +32,29 @@ class UserCreateOrderViewController: UIViewController,  UITableViewDelegate, UIT
         tableView.rowHeight = 135
         tableView.allowsMultipleSelectionDuringEditing = true
         fetchData()
+        
+        if let order = order {
+            mode = .edit
+            navigationItem.title = "Edit Order"
+            customerName.text = order.customerName
+            tableNumber.text = order.tableNumber
+            if let dining = order.diningOption {
+                let titles = (0..<diningOptionSegment.numberOfSegments).compactMap { diningOptionSegment.titleForSegment(at: $0) }
+                if let idx = titles.firstIndex(of: dining) {
+                    diningOptionSegment.selectedSegmentIndex = idx
+                }
+            }
+            // Prefill selected dishes from existing order items
+            let items = db.orderItems(from: order)
+            selectedDishes.removeAll()
+            for item in items {
+                selectedDishes[item.dish] = item.quantity
+            }
+            tableView.reloadData()
+            updateTotalPrice()
+        } else {
+            navigationItem.title = "Create Order"
+        }
     }
     
     
@@ -151,45 +178,59 @@ class UserCreateOrderViewController: UIViewController,  UITableViewDelegate, UIT
     
     @IBAction func submitOrderButton(_ sender: Any) {
         // 1️⃣ Check if at least one dish is selected
-          guard !selectedDishes.isEmpty else {
-              print("⚠️ No dishes selected")
-              return
-          }
-          
-          // 2️⃣ Get order info
-          let customer = customerName.text
-          let table = tableNumber.text
-          let diningOption = diningOptionSegment.titleForSegment(at: diningOptionSegment.selectedSegmentIndex) ?? "Dine In"
-        
+        guard !selectedDishes.isEmpty else {
+            print("⚠️ No dishes selected")
+            return
+        }
+
+        // 2️⃣ Get order info
+        let customer = customerName.text
+        let table = tableNumber.text
+        let diningOption = diningOptionSegment.titleForSegment(at: diningOptionSegment.selectedSegmentIndex) ?? "Dine In"
+
         let orderItems = selectedDishes.map { OrderItem(dish: $0.key, quantity: $0.value) }
-          
-          // 3️⃣ Save order using DatabaseManager
-        
-        db.addOrder(customerName: customer, tableNumber: table, diningOption: diningOption, selectedItems: orderItems)
-         
-          
-          // 4️⃣ Optional: Print order summary
-          print("✅ Order Submitted!")
-          print("Customer: \(customer ?? "N/A")")
-          print("Table: \(table ?? "N/A")")
-          print("Dining Option: \(diningOption)")
-          print("Dishes:")
-          
-          var total: Double = 0
-          for (dish, quantity) in selectedDishes {
-              print("\(dish.id?.uuidString ?? "") - \(dish.name ?? "") x\(quantity) - $\(dish.price * Double(quantity))")
-              total += dish.price * Double(quantity)
-          }
-          print("Total Price: $\(String(format: "%.2f", total))")
-          
-          // 5️⃣ Reset UI for next order
-          selectedDishes.removeAll()
-          tableView.reloadData()
-          updateTotalPrice()
-          customerName.text = ""
-          tableNumber.text = ""
+
+        switch mode {
+        case .create:
+            db.addOrder(customerName: customer, tableNumber: table, diningOption: diningOption, selectedItems: orderItems)
+        case .edit:
+            guard let orderID = order?.id else {
+                print("⚠️ Missing order ID for update")
+                return
+            }
+            db.updateOrder(orderID: orderID, customerName: customer, tableNumber: table, diningOption: diningOption, selectedItems: orderItems,status: "Pending")
+        }
+
+        // 4️⃣ Optional: Print order summary
+        print("✅ Order \(mode == .create ? "Submitted" : "Updated")!")
+        print("Customer: \(customer ?? "N/A")")
+        print("Table: \(table ?? "N/A")")
+        print("Dining Option: \(diningOption)")
+        print("Dishes:")
+
+        var total: Double = 0
+        for (dish, quantity) in selectedDishes {
+            print("\(dish.id?.uuidString ?? "") - \(dish.name ?? "") x\(quantity) - $\(dish.price * Double(quantity))")
+            total += dish.price * Double(quantity)
+        }
+        print("Total Price: $\(String(format: "%.2f", total))")
+
+        // Notify and pop if editing
+        onSaved?()
+
+        // 5️⃣ Reset UI for next order (only if creating)
+        if mode == .create {
+            selectedDishes.removeAll()
+            tableView.reloadData()
+            updateTotalPrice()
+            customerName.text = ""
+            tableNumber.text = ""
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     
 
 }
+

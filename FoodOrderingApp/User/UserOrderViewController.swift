@@ -31,7 +31,6 @@ class UserOrderViewController: UIViewController, UITableViewDelegate, UITableVie
           super.viewDidLoad()
           tableView.rowHeight = 210
           tableView.allowsMultipleSelectionDuringEditing = true
-          navigationItem.rightBarButtonItem = editButtonItem
           let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
           tableView.addGestureRecognizer(longPress)
 
@@ -67,13 +66,6 @@ class UserOrderViewController: UIViewController, UITableViewDelegate, UITableVie
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
-        if editing {
-            // Show Cancel button on the left when editing
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelBarButtonTapped))
-        } else {
-            // Hide Cancel button when not editing
-            navigationItem.leftBarButtonItem = nil
-        }
     }
 
     @IBAction func deleteSelected(_ sender: Any) {
@@ -201,26 +193,21 @@ class UserOrderViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
-            // In editing mode, just select for deletion
             return
         }
-        // Navigate to edit/detail page when not editing
-        print("Navigting to different place")
-//        let order = orders[indexPath.row]
-//        if let editVC = storyboard?.instantiateViewController(withIdentifier: "EditOrderViewController") as? EditOrderViewController {
-//            editVC.order = order
-//            navigationController?.pushViewController(editVC, animated: true)
-//        }
+        let order = orders[indexPath.row]
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "UpdateOrderViewController") as? UpdateOrderViewController {
+               vc.order = order
+                print("Nav Controller:", navigationController)
+               navigationController?.pushViewController(vc, animated: true)
+           }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
-            // In editing mode, just deselect for deletion
             return
         }
     }
-
-
 
 }

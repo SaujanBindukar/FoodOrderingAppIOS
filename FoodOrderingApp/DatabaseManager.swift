@@ -234,6 +234,62 @@ class DatabaseManager: NSObject {
             print("❌ Failed to delete order:", error.localizedDescription)
         }
     }
+    
+    func updateOrder(
+        orderID: UUID,
+        customerName: String?,
+        tableNumber: String?,
+        diningOption: String,
+        selectedItems: [OrderItem],
+        status: String
+    ) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+
+        let request: NSFetchRequest<Order> = Order.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", orderID as CVarArg)
+
+        do {
+            let results = try context.fetch(request)
+            if let orderToUpdate = results.first {
+
+                // Update fields
+                orderToUpdate.customerName = customerName
+                orderToUpdate.tableNumber = tableNumber
+                orderToUpdate.diningOption = diningOption
+                orderToUpdate.status = status
+                
+                // Create updated orderedDishes JSON
+                let orderData: [[String: Any]] = selectedItems.map { item in
+                    [
+                        "dishID": item.dish.id?.uuidString,
+                        "dishName": item.dish.name ?? "",
+                        "price": item.dish.price,
+                        "quantity": item.quantity
+                    ]
+                }
+
+                if let jsonData = try? JSONSerialization.data(withJSONObject: orderData, options: []),
+                   let jsonString = String(data: jsonData, encoding: .utf8) {
+                    orderToUpdate.orderedDishes = jsonString
+                }
+
+                // Update total
+                let total = selectedItems.reduce(0) { $0 + ($1.dish.price * Double($1.quantity)) }
+                orderToUpdate.totalPrice = total
+
+                // Save
+                try context.save()
+                print("✅ Order updated successfully")
+
+            } else {
+                print("⚠️ Order with ID \(orderID) not found")
+            }
+        } catch {
+            print("❌ Failed to update order:", error.localizedDescription)
+        }
+    }
+
 
 
 
